@@ -4,19 +4,42 @@ https://www.mattpahuta.com
 Date: October 2024
 */
 
+
+/* 
+  **** Specs ****
+  
+  h1 - 16px to 24px 
+  output pw - ?
+  character length label - ?
+  character length number - ?
+  checkbox squares - 20px x 20px
+  checkbox labels - ?
+  strength - 16px to ?
+  button text - ?
+*/
+
 /* Custom Variables */
 :root {
   
   /* Fonts */
-
+  --ff-primary: "JetBrains Mono", serif;
   /* Font Sizes */
-
+  --fs-400: 1rem;
+  --fs-450: 18px;
+  --fs-500: 24px;
+  --fs700: 32px;
   /* Colors */
-  
-  /* Border radius */
-  --br-soft: 1rem;
-  --br-round: 50%;
-  
+  --clr--very-dark-gray: hsl(248, 15%, 11%);
+  --clr-dark-gray: hsl(248, 10%, 15%);
+  --clr-blue-gray: hsl(251, 9%, 53%);
+  --clr-almost-white: hsl(252, 11%, 91%);
+  --clr-neon-green: hsl(127, 100%, 82%);
+  --clr-red: hsl(0, 91%, 63%);
+  --clr-orange: hsl(13, 95%, 66%);
+  --clr-yellow: hsl(42, 91%, 68%);
+  /* spacing */
+  --spacing-100: 1rem;
+  --spacing-150: 1.5rem;
 
 }
 
@@ -94,3 +117,37 @@ textarea:not([rows]) {
   scroll-margin-block: 5ex;
 }
 
+/* Base Styles */
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--ff-primary);
+  font-size: var(--fs-400);
+  background: var(--clr--very-dark-gray);
+  color: var(--clr-almost-white);
+}
+
+.title {
+  margin-bottom: var(--spacing-100);
+  font-size: var(--fs-400);
+  font-size: clamp(1rem, 0.8239rem + 0.75117vw, 1.5rem);
+}
+
+.pw-app {
+  margin-inline: var(--spacing-100);
+  max-width: 540px;
+}
+
+.password-output,
+.password-form {
+  padding: var(--spacing-100);
+  background: var(--clr-dark-gray);
+}
+
+/* Components */
+
+.btn {
+
+}
