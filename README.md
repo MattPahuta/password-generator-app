@@ -51,7 +51,7 @@ Add a screenshot of your solution. The easiest way to do this is to use Firefox 
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
-- Vanilla JavaScript
+- Vanilla JavaScript 
 
 
 ### What I learned
