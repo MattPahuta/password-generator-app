@@ -117,6 +117,16 @@ textarea:not([rows]) {
   scroll-margin-block: 5ex;
 }
 
+.visually-hidden:not(:focus):not(:active) {
+  clip: rect(0 0 0 0); 
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap; 
+  width: 1px;
+}
+
 /* Base Styles */
 body {
   margin: 0;
@@ -143,7 +153,53 @@ header {
 
 /* Components */
 .btn {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: 220ms all ease-in-out;
+}
 
+@media screen and (-ms-high-contrast: active) {
+  .btn {
+    border: 2px solid currentcolor;
+  }
+}
+.copy-btn {
+
+}
+
+.copy-btn:hover svg path, 
+.copy-btn:focus svg path {
+	fill: var(--clr-almost-white);
+}
+
+.generate-btn {
+
+  min-width: 10ch;
+  min-height: 44px;
+  width: 100%;
+  background: var(--clr-neon-green);
+  text-transform: uppercase;
+  font-weight: 700;
+  gap: var(--spacing-100);
+
+}
+
+.generate-btn:hover,
+.generate-btn:focus-within {
+  background: transparent;
+  color: var(--clr-neon-green);
+  border: 2px solid var(--clr-neon-green);
+
+}
+
+.generate-btn:hover svg path, 
+.generate-btn:focus svg path {
+	fill: var(--clr-neon-green)
 }
 
 /* App styles */
@@ -188,4 +244,12 @@ input[type="range"]::-moz-range-track {
 input[type="range"]::-moz-range-progress {
   background: var(--clr-neon-green);
   height: 0.5rem;
+}
+
+/* Character options checklist */
+.char-options-container {
+  margin: 0;
+  padding: 0;
+  border: none;
+  
 }
