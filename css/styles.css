@@ -221,6 +221,20 @@ header {
   justify-content: space-between;
 }
 
+.length-slider-container {
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  gap: var(--spacing-100);
+}
+
+.length-range-output {
+  line-height: 1.1;
+}
+
+.length-range-input {
+  grid-column: span 2;
+}
+
 /* Style range slider */
 input[type="range"] {
   -webkit-appearance: none;
@@ -231,20 +245,61 @@ input[type="range"] {
 }
 /***** Chrome, Safari, Opera, and Edge Chromium *****/
 input[type="range"]::-webkit-slider-runnable-track {
-  background: #053a5f;
-  height: 0.5rem;
+  position: relative;
+  background: var(--clr--very-dark-gray);
+  height: 8px;
+}
+
+/* slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+   appearance: none;
+   position: relative;
+   background-color: var(--clr-almost-white);
+   height: 28px;
+   width: 28px;
+   border-radius: 50%;
+   top: 50%;
+   translate: 0 -50%;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {   
+  border: 1px solid var(--clr-neon-green);
+  outline: 3px solid #053a5f;
+  outline-offset: 0.125rem; 
 }
 
 /******** Firefox ********/
 input[type="range"]::-moz-range-track {
   background: var(--clr--very-dark-gray);
-  height: 0.5rem;
+  height: 8px;
+  position: relative;
 }
 
 input[type="range"]::-moz-range-progress {
   background: var(--clr-neon-green);
   height: 0.5rem;
 }
+
+/* slider thumb */
+input[type="range"]::-moz-range-thumb {
+   border: none;
+   background-color: var(--clr-almost-white);
+   height: 28px;
+   width: 28px;
+   border-radius: 50%;
+}
+
+input[type="range"]:hover::-moz-range-thumb {
+  border: 2px solid var(--clr-neon-green);
+  background: var(--clr--very-dark-gray);
+  /* outline: 3px solid #053a5f;
+  outline-offset: 0.125rem;  */
+}
+
+
+
+
 
 /* Character options checklist */
 .char-options-container {
