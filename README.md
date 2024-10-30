@@ -58,7 +58,9 @@ Add a screenshot of your solution. The easiest way to do this is to use Firefox 
 
 Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
 
-To see how you can add code snippets, see below:
+Styling the range input slider for consitent appearance across browsers was a challenge with this project that I was not prepared for. Hoo boy, I spent hours trying different methods and deciding on which approach to take. Eventually, I settled on a CSS-only approach as I wanted to avoid using JavaScript to style elements as much as possible. 
+
+
 
 ```html
 <h1>Some HTML code I'm proud of</h1>
