@@ -58,7 +58,7 @@ Add a screenshot of your solution. The easiest way to do this is to use Firefox 
 
 Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
 
-Styling the range input slider for consitent appearance across browsers was a challenge with this project that I was not prepared for. Hoo boy, I spent hours trying different methods and deciding on which approach to take. Eventually, I settled on a CSS-only approach as I wanted to avoid using JavaScript to style elements as much as possible. 
+Styling the range input slider for consitent appearance across browsers was a challenge with this project that I was not prepared for. Hoo boy, I spent hours trying different methods and deciding on which approach to take. Eventually, I settled on a CSS-only approach as I wanted to avoid using JavaScript to style elements as much as possible. The CSS is pretty complex (for me) and took a while to grasp, and honestly going a JS route may have been simpler, but it was an interesting detor nonetheless.
 
 
 
@@ -83,7 +83,7 @@ Use this section to outline areas that you want to continue focusing on in futur
 ### Useful resources
 
 - [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [Range slider for chrome - stackoverflow](https://stackoverflow.com/questions/65738788/input-range-slider-progress-for-chrome-browser) - This is the stackoverflow post that led me to my eventual solution for dealing with the range slider styling for chrome, based heavily on [this codepen](https://codepen.io/ShadowShahriar/pen/zYPPYrQ)
 
 
 ## Author
