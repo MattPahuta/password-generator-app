@@ -22,117 +22,115 @@
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-    <header>
-      <h1 class="title">Password Generator</h1>
-    </header>
-    <main class="pw-app">
-      <!-- generated pw output container -->
-      <div class="password-output">
-        <output
-          id="output"
-          class="output"
-          form="pwGenerator"
-          for=""
-          aria-live=""
-          >P4$5W0rD!</output
-        >
-        <button id="copyBtn" class="btn copy-btn">
-          <svg
-            width="21"
-            height="24"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M20.341 3.091 17.909.659A2.25 2.25 0 0 0 16.319 0H8.25A2.25 2.25 0 0 0 6 2.25V4.5H2.25A2.25 2.25 0 0 0 0 6.75v15A2.25 2.25 0 0 0 2.25 24h10.5A2.25 2.25 0 0 0 15 21.75V19.5h3.75A2.25 2.25 0 0 0 21 17.25V4.682a2.25 2.25 0 0 0-.659-1.591ZM12.469 21.75H2.53a.281.281 0 0 1-.281-.281V7.03a.281.281 0 0 1 .281-.281H6v10.5a2.25 2.25 0 0 0 2.25 2.25h4.5v1.969a.282.282 0 0 1-.281.281Zm6-4.5H8.53a.281.281 0 0 1-.281-.281V2.53a.281.281 0 0 1 .281-.281H13.5v4.125c0 .621.504 1.125 1.125 1.125h4.125v9.469a.282.282 0 0 1-.281.281Zm.281-12h-3v-3h.451c.075 0 .147.03.2.082L18.667 4.6a.283.283 0 0 1 .082.199v.451Z"
-              fill="#A4FFAF" />
-          </svg>
-        </button>
-      </div>
-      <form id="pwGenerator" class="password-form">
-        <!-- range slider -->
-        <div class="length-slider-container">
-          <label for="">Character Length</label>
-          <!-- ToDo: check use of output el and 'for' attribute -->
-          <output aria-live="" for="lengthRangeInput" class="length-range-output">1</output>
-          <input
-            type="range"
-            id="lengthRangeInput"
-            class="length-range-input"
-            min="1"
-            max="20"
-            step="1" />
+    <div class="app">
+      <header>
+        <h1 class="title">Password Generator</h1>
+      </header>
+      <main>
+        <!-- generated pw output container -->
+        <div class="password-output">
+          <output
+            id="output"
+            class="output"
+            form="pwGenerator"
+            for=""
+            aria-live=""
+            >P4$5W0rD!</output
+          >
+          <button id="copyBtn" class="btn copy-btn">
+            <svg
+              width="21"
+              height="24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M20.341 3.091 17.909.659A2.25 2.25 0 0 0 16.319 0H8.25A2.25 2.25 0 0 0 6 2.25V4.5H2.25A2.25 2.25 0 0 0 0 6.75v15A2.25 2.25 0 0 0 2.25 24h10.5A2.25 2.25 0 0 0 15 21.75V19.5h3.75A2.25 2.25 0 0 0 21 17.25V4.682a2.25 2.25 0 0 0-.659-1.591ZM12.469 21.75H2.53a.281.281 0 0 1-.281-.281V7.03a.281.281 0 0 1 .281-.281H6v10.5a2.25 2.25 0 0 0 2.25 2.25h4.5v1.969a.282.282 0 0 1-.281.281Zm6-4.5H8.53a.281.281 0 0 1-.281-.281V2.53a.281.281 0 0 1 .281-.281H13.5v4.125c0 .621.504 1.125 1.125 1.125h4.125v9.469a.282.282 0 0 1-.281.281Zm.281-12h-3v-3h.451c.075 0 .147.03.2.082L18.667 4.6a.283.283 0 0 1 .082.199v.451Z"
+                fill="#A4FFAF" />
+            </svg>
+          </button>
         </div>
-        <!-- pw composition checkboxes -->
-        <fieldset
-          id="charOptionsContainer"
-          class="char-options-container">
-          <!-- visually hidden legend -->
-          <legend class="visually-hidden">
-            Select password composition options
-          </legend>
-          <label class="form-control">
+        <form id="pwGenerator" class="password-form">
+          <!-- range slider -->
+          <div class="length-slider-container">
+            <label for="">Character Length</label>
+            <!-- ToDo: check use of output el and 'for' attribute -->
+            <output aria-live="" for="lengthRangeInput" class="length-range-output">1</output>
             <input
-              type="checkbox"
-              id="UppercaseChars"
-              name="UppercaseChars" />
-              Include Uppercase Letters
-          </label>
-          <label class="form-control">
-            <input
-              type="checkbox"
-              id="lowerCaseChars"
-              name="lowerCaseChars" />
-              Include Lowercase Letters
-          </label>
-          <label class="form-control">
-            <input
-              type="checkbox"
-              id="numberChars"
-              name="numberChars" />
-              Include Numbers
-          </label>
-          <label class="form-control">
-            <input
-              type="checkbox"
-              id="symbolChars"
-              name="symbolChars" />
-              Include Symbols
-          </label>
-        </fieldset>
-        <!-- pw strength indicator -->
-        <div class="strength-container">
-          <p>Strength</p>
-          <div
-            id="strengthRating"
-            class="strenth-rating"
-            aria-live="">
-            <!-- this p tag should not exist on initial load -->
-            <p class="strength-rating__label"></p>
-            <!-- bars unfilled by default -->
-            <div class="strength-rating__bars">
-              <div class="bar"></div>
-              <div class="bar"></div>
-              <div class="bar"></div>
-              <div class="bar"></div>
+              type="range"
+              id="lengthRangeInput"
+              class="length-range-input"
+              min="1"
+              max="20"
+              step="1" />
+          </div>
+          <!-- pw composition checkboxes -->
+          <fieldset
+            id="charOptionsContainer"
+            class="char-options-container">
+            <!-- visually hidden legend -->
+            <legend class="visually-hidden">
+              Select password composition options
+            </legend>
+            <label class="form-control">
+              <input
+                type="checkbox"
+                id="UppercaseChars"
+                name="UppercaseChars" />
+                Include Uppercase Letters
+            </label>
+            <label class="form-control">
+              <input
+                type="checkbox"
+                id="lowerCaseChars"
+                name="lowerCaseChars" />
+                Include Lowercase Letters
+            </label>
+            <label class="form-control">
+              <input
+                type="checkbox"
+                id="numberChars"
+                name="numberChars" />
+                Include Numbers
+            </label>
+            <label class="form-control">
+              <input
+                type="checkbox"
+                id="symbolChars"
+                name="symbolChars" />
+                Include Symbols
+            </label>
+          </fieldset>
+
+
+          <!-- pw strength indicator -->
+          <div class="strength-container">
+            <p>Strength</p>
+            <div aria-live="">
+              <p id="strengthRating"></p>
+              <div class="strength-bar"></div>
+              <div class="strength-bar"></div>
+              <div class="strength-bar"></div>
+              <div class="strength-bar"></div>
             </div>
           </div>
-        </div>
-        <button
-          id="generateBtn"
-          class="btn generate-btn"
-          type="submit">
-          <span>Generate</span>
-          <svg
-            width="12"
-            height="12"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              fill="#24232C"
-              d="m5.106 12 6-6-6-6-1.265 1.265 3.841 3.84H.001v1.79h7.681l-3.841 3.84z" />
-          </svg>
-        </button>
-      </form>
-    </main>
 
+
+          <button
+            id="generateBtn"
+            class="btn generate-btn"
+            type="submit">
+            <span>Generate</span>
+            <svg
+              width="12"
+              height="12"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                fill="#24232C"
+                d="m5.106 12 6-6-6-6-1.265 1.265 3.841 3.84H.001v1.79h7.681l-3.841 3.84z" />
+            </svg>
+          </button>
+        </form>
+      </main>
+    </div>
     <script src="./js/script.js"></script>
   </body>
 </html>
