@@ -36,6 +36,8 @@ Date: October 2024
   --clr-orange: hsl(13, 95%, 66%);
   --clr-yellow: hsl(42, 91%, 68%);
   /* spacing */
+  --spacing-50: 0.5rem;
+  --spacing-75: 0.75rem;
   --spacing-100: 1rem;
   --spacing-125: 1.25rem;
   --spacing-150: 1.5rem;
@@ -216,8 +218,12 @@ header {
 /* App styles */
 .app {
   padding-inline: var(--spacing-100);
-  max-width: 33.75rem;
   width: 100%;
+}
+
+.app main {
+  max-width: 33.75rem;
+  margin-inline: auto;
 }
 
 .password-output,
@@ -243,7 +249,6 @@ header {
 }
 
 .length-slider-container {
-  /* margin-bottom: var(--spacing-150); */
   display: grid;
   grid-template-columns: 1fr min-content;
   gap: var(--spacing-100);
@@ -263,7 +268,6 @@ input[type='range'] {
   --track-height: 0.125em;
   --clip-edges: 0.125em;
   --track-color: var(--clr--very-dark-gray);
-  /* position: relative; */
   font-size: 1.5em;
   width: 100%;
   background: var(--clr-dark-gray);
@@ -279,11 +283,6 @@ input[type='range']::-webkit-slider-thumb {
   transition: 200ms all ease-in-out;
   height: var(--thumb-height);
 }
-
-/* input[type='range']::-webkit-slider-runnable-track,
-input[type='range']::-webkit-slider-thumb {
-  position: relative;
-} */
 
 input[type='range']::-webkit-slider-thumb {
   --thumb-radius: calc((var(--thumb-height) * 0.5) - 1px);
@@ -341,7 +340,6 @@ input[type='range']::-moz-range-progress {
 input[type='range']::-moz-range-thumb {
   background: currentColor;
   border: 0;
-  /* border: 2px solid currentColor; */
   width: var(--thumb-width, var(--thumb-height));
   border-radius: var(--thumb-width, var(--thumb-height));
 }
@@ -408,6 +406,7 @@ input[type="checkbox"] {
   display: grid;
   place-content: center;
   cursor: pointer;
+  transition: 150ms all ease-in-out;
 }
 
 input[type="checkbox"]:checked {
@@ -433,15 +432,49 @@ input[type="checkbox"]:checked::before {
   color: var(--clr-blue-gray);
 }
 
-.strength-container > div {
+.strength-rating-container {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--spacing-75);
 }
 
-.strength-bar {
+.strength-label {
+  margin: 0;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.strength-bars {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-50);
+}
+
+.bar {
   width: 0.625rem;
   height: 1.75rem;
   background: none;
   border: 2px solid var(--clr-almost-white);
+}
+
+.too-weak {
+  background: var(--clr-red);
+  border-color: var(--clr-red);
+}
+
+.weak {
+  background: var(--clr-orange);
+  border-color: var(--clr-orange);
+  
+}
+
+.medium {
+  background: var(--clr-yellow);
+  border-color: var(--clr-yellow);
+  
+}
+
+.strong {
+  background: var(--clr-neon-green);
+  border-color: var(--clr-neon-green);
 }
