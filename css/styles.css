@@ -234,6 +234,7 @@ header {
 
 .output {
   font-size: var(--fs-500);
+  opacity: 0.25;
 }
 
 .password-form {
@@ -252,10 +253,12 @@ header {
   display: grid;
   grid-template-columns: 1fr min-content;
   gap: var(--spacing-100);
+  line-height: 1;
 }
 
 .length-range-output {
-  line-height: 1.1;
+  font-weight: 600;
+  color: var(--clr-neon-green);
 }
 
 .length-range-input {

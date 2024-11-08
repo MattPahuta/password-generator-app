@@ -82,7 +82,7 @@ Use this section to outline areas that you want to continue focusing on in futur
 
 ### Useful resources
 
-- [modernCSSdev](https://moderncss.dev/pure-css-custom-checkbox-style/) - Stephanie e.
+- [modernCSSdev](https://moderncss.dev/pure-css-custom-checkbox-style/) - Stephanie Eckles content over at Modern CSS Solutions is one of my go-to resources and this custom checkbox style tutorial was a big help with this project.
 - [Range slider for chrome - stackoverflow](https://stackoverflow.com/questions/65738788/input-range-slider-progress-for-chrome-browser) - This is the stackoverflow post that led me to my eventual solution for dealing with the range slider styling for chrome, based heavily on [this codepen](https://codepen.io/ShadowShahriar/pen/zYPPYrQ)
 
 
