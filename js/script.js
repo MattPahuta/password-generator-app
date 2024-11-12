@@ -26,14 +26,6 @@ const CHAR_SETS = {
 // - update label to correct value (too weak!, weak, medium, strong)
 // - update strength bars to render corresponding color coding
 
-
-const optionsTest = {
-  uppercase: true,
-  lowercase: true,
-  numbers: true,
-  symbols: false
-}
-
 // Generate password from selected length and character options
 function generatePassword(length, options) {
   let allChars = '';
@@ -48,6 +40,9 @@ function generatePassword(length, options) {
     const randomIndex = Math.floor(Math.random() * allChars.length);
     password += allChars[randomIndex];
   }
+
+  console.log('AllChars: ', allChars)
+
   return password;
 }
 
@@ -58,6 +53,29 @@ function renderPassword(password) {
 
   passwordOutput.textContent = password
   passwordOutput.style.opacity = 1;
+}
+
+// Evaluate password strength
+function evaluatePasswordStrength(password, options) {
+  const length = password.length;
+  let strengthScore = 0;
+
+  // Scoring based on length and character types
+  if (length >= 10) strengthScore++;
+  if (length >= 12) strengthScore++;
+  if (options.uppercase && /[A-Z]/.test(password)) strengthScore++; // Uppercase check
+  if (options.lowercase && /[a-z]/.test(password)) strengthScore++; // Lowercase check
+  if (options.numbers && /[0-9]/.test(password)) strengthScore++;   // Number check
+  if (options.symbols && /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) strengthScore++; // Symbol check
+
+  // Determine strength rating based on score
+  if (strengthScore <= 2) return 'too weak';
+  if (strengthScore <= 3) return 'weak';
+  if (strengthScore <= 5) return 'medium';
+
+  console.log('Score: ', strengthScore)
+
+  return 'strong';
 }
 
 
@@ -77,7 +95,7 @@ function handleFormSubmit(event) {
     symbols: formData.has("symbols")
   };
 
-  // if all options are false (none selected), return
+  // if all options are false (none selected), exit function
   if (!options.uppercase && !options.lowercase && !options.numbers && !options.symbols) {
     alert('select at least one option')
     return;
@@ -91,6 +109,10 @@ function handleFormSubmit(event) {
   console.log(password)
   // render password
   renderPassword(password);
+
+  // Rate password strength
+  const pwStrength = evaluatePasswordStrength(password, options);
+  console.log(pwStrength)
 }
 
 
