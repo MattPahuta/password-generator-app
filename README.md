@@ -80,6 +80,8 @@ const proudOfThisFunc = () => {
 
 Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
 
+The password strength checker algorithm is very rudimentary. An app meant for true production use will require a much more robust solution and likely the use of a third-party library.
+
 ### Useful resources
 
 - [modernCSSdev](https://moderncss.dev/pure-css-custom-checkbox-style/) - Stephanie Eckles content over at Modern CSS Solutions is one of my go-to resources and this custom checkbox style tutorial was a big help with this project.
