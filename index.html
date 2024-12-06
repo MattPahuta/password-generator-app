@@ -23,10 +23,8 @@
   </head>
   <body>
     <div class="app">
-      <header>
-        <h1 class="title">Password Generator</h1>
-      </header>
       <main>
+        <h1 class="title">Password Generator</h1>
         <!-- generated pw output container -->
         <div class="password-output">
           <output
@@ -34,7 +32,7 @@
             class="output"
             form="pwGenerator"
             for=""
-            aria-live=""
+            aria-live="polite"
             >P4$5W0rD!</output
           >
           <button id="copyBtn" class="btn copy-btn">
@@ -51,15 +49,21 @@
         <form id="passwordForm" class="password-form">
           <!-- range slider -->
           <div class="length-slider-container">
-            <label for="">Character Length</label>
+            <label for="lengthInput">Character Length</label>
             <!-- ToDo: check use of output el and 'for' attribute -->
-            <output id="lengthOutput" aria-live="" for="lengthInput" class="length-range-output">10</output>
+            <output
+              id="lengthOutput"
+              aria-live="polite"
+              for="lengthInput"
+              class="length-range-output"
+              >10</output
+            >
             <input
               type="range"
               name="length"
               id="lengthInput"
               class="length-range-input"
-              min="0"
+              min="1"
               max="20"
               value="10"
               step="1" />
@@ -77,37 +81,41 @@
                 type="checkbox"
                 id="uppercaseChars"
                 name="uppercase" />
-                Include Uppercase Letters
+              Include Uppercase Letters
             </label>
             <label class="form-control">
               <input
                 type="checkbox"
                 id="lowercaseChars"
                 name="lowercase" />
-                Include Lowercase Letters
+              Include Lowercase Letters
             </label>
             <label class="form-control">
               <input
                 type="checkbox"
                 id="numberChars"
                 name="numbers" />
-                Include Numbers
+              Include Numbers
             </label>
             <label class="form-control">
               <input
                 type="checkbox"
                 id="symbolChars"
                 name="symbols" />
-                Include Symbols
+              Include Symbols
             </label>
           </fieldset>
-
 
           <!-- pw strength indicator -->
           <div class="strength-container">
             <p>Strength</p>
-            <div class="strength-rating-container" aria-live="">
-              <p id="strengthRating" class="strength-label">too weak!</p>
+            <div class="strength-rating-container">
+              <p
+                id="strengthRating"
+                class="strength-label"
+                aria-live="polite">
+                <span class="visually-hidden">Password rating:</span>
+              </p>
               <div class="strength-bars">
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -116,7 +124,6 @@
               </div>
             </div>
           </div>
-
 
           <button
             id="generateBtn"

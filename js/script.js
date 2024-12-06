@@ -6,6 +6,9 @@ const CHAR_SETS = {
   symbols: "!\"#$%& '()*+,-./:;<=>?@[\]^_`{|}~"
 };
 
+const strengthBars = document.querySelectorAll('.bar');
+const strengthRating = document.getElementById('strengthRating');
+
 // symbols list from OWASP (https://owasp.org/www-community/password-special-characters)
 
 // Get character length value from input range slider
@@ -26,7 +29,7 @@ const CHAR_SETS = {
 // Listen for clicks on 'copy' button, allow for copying to clipboard of generated pw
 // Render strength rating in Strength field
 // - update label to correct value (too weak!, weak, medium, strong)
-// - update strength bars to render corresponding color coding
+// - update strength strengthBars to render corresponding color coding
 
 // Generate password from selected length and character options
 function generatePassword(length, options) {
@@ -52,36 +55,94 @@ function generatePassword(length, options) {
 function renderPassword(password) {
   const passwordOutput = document.getElementById("passwordOutput");
   // console.log('PW passed in:', password)
-
   passwordOutput.textContent = password
   passwordOutput.style.opacity = 1;
 }
 
 // Evaluate password strength
 function evaluatePasswordStrength(password, options) {
-  let strengthScore = 0;
+  let score = 0;
   // Scoring based on length and character types
-  if (password.length >= 8) strengthScore += 1;
-  if (password.length >= 12) strengthScore += 1;
-  if (options.uppercase && /[A-Z]/.test(password)) strengthScore += 1; // Uppercase check
-  if (options.lowercase && /[a-z]/.test(password)) strengthScore += 1; // Lowercase check
-  if (options.numbers && /[0-9]/.test(password)) strengthScore += 1;   // Number check
-  if (options.symbols && /[!#$%& '()*+,-./:;<=>?@[\]^_`{|}~]/.test(password)) strengthScore += 1; // Symbol check
+  if (password.length >= 8) score += 1;
+  if (password.length >= 12) score += 1;
+  if (options.uppercase && /[A-Z]/.test(password)) score += 1; // Uppercase check
+  if (options.lowercase && /[a-z]/.test(password)) score += 1; // Lowercase check
+  if (options.numbers && /[0-9]/.test(password)) score += 1;   // Number check
+  if (options.symbols && /[!#$%& '()*+,-./:;<=>?@[\]^_`{|}~]/.test(password)) score += 1; // Symbol check
   // debug
-  console.log('Score: ', strengthScore)
-  // assign strength label
-  switch (strengthScore) {
-    case 1:
-    case 2:
-      return "Too weak!";
-    case 3:
-      return "Weak";
-    case 4:
-      return "Medium";
-    default:
-      return "Strong";
+  console.log('Score: ', score)
+
+  renderStrengthOutput(score)
+
+}
+
+// Render password strength label and indicator
+// ToDo: rename to renderStrengthOutput
+function renderStrengthOutput(ratingScore) {
+  // 0 - 2 = too weak - 1 bar, red
+  // 3 = weak - 2 strengthBars, orange
+  // 4 = medium - 3 strengthBars, yellow
+  // >= 5 = strong - 4 strengthBars, neon-green
+
+  /*
+    Requirements:
+    - render strength label (too weak, weak, etc.)
+    - match label with num of strengthBars to fill
+    - fill bar(s) with proper color
+
+    Use object to hold strength props?
+  */
+  resetStrengthOutput(); // clear any previous styles/content
+  
+  const legend = {
+    ratingLabel: '',
+    barCount: null,
+    barColor: ''
   }
 
+  switch (ratingScore) {
+    case 0:
+    case 1:
+    case 2:
+      legend.ratingLabel = 'Too Weak!';
+      legend.barCount = 1;
+      legend.barColor = 'hsl(0, 91%, 63%)';
+      break;
+    case 3:
+      legend.ratingLabel = 'Weak';
+      legend.barCount = 2;
+      legend.barColor = 'hsl(13, 95%, 66%)';
+      break;
+    case 4:
+      legend.ratingLabel = 'Medium';
+      legend.barCount = 3;
+      legend.barColor = 'hsl(42, 91%, 68%)';
+      break;
+    default:
+      legend.ratingLabel = 'Strong';
+      legend.barCount = 4;
+      legend.barColor = 'hsl(127, 100%, 82%)';
+  }
+
+  console.log(legend);
+
+  const styledBars = Array.from(strengthBars).slice(0, legend.barCount);
+
+  strengthRating.textContent = legend.ratingLabel; // apply strength rating label
+  styledBars.forEach(bar => { // style corresponding strength bars
+    bar.style.backgroundColor = legend.barColor;
+    bar.style.borderColor = legend.barColor;
+  })
+
+}
+
+// Reset strength label and indicator bars
+function resetStrengthOutput() {
+  strengthRating.textContent = '';
+  strengthBars.forEach(bar => { 
+    bar.style.backgroundColor = 'transparent';
+    bar.style.borderColor = 'hsl(252, 11%, 91%)';
+  })
 }
 
 // Handle password form submit 
@@ -112,11 +173,15 @@ function handleFormSubmit(event) {
   // generate password
   const password = generatePassword(length, options);
   console.log(password)
-  // render password
-  renderPassword(password);
 
   // Rate password strength
   console.log(evaluatePasswordStrength(password, options))
+
+
+  // render password
+  // add 'strength' rating to render function?
+  renderPassword(password);
+
 
 }
 
