@@ -80,7 +80,8 @@ const proudOfThisFunc = () => {
 
 Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
 
-The password strength checker algorithm is very rudimentary. An app meant for true production use will require a much more robust solution and likely the use of a third-party library.
+The password strength checker algorithm is quite rudimentary and somewhat arbitrary. I develped the logic by researching for about an hour and playing around with several tools I found online, including [The Password Meter](https://passwordmeter.com/). I fully recognize that to elevate this app to something more accurate to CyberSec standards will require a more robust solution or maybe even a third-party library. It's something I may tackle for a future revision of the project.
+
 
 ### Useful resources
 
@@ -92,7 +93,7 @@ The password strength checker algorithm is very rudimentary. An app meant for tr
 
 - Website - [Matt Pahuta](https://www.mattpahuta.com)
 - Frontend Mentor - [@mattpahuta](https://www.frontendmentor.io/profile/MattPahuta)
-- Twitter - [@mattpahuta](https://www.twitter.com/MattPahuta)
+- Bluesky - [@mattpahuta](https://bsky.app/profile/mattpahuta.bsky.social)
 - LinkedIn - [Matt Pahuta](www.linkedin.com/in/mattpahuta)
 
 

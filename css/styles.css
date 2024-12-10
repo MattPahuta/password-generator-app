@@ -40,7 +40,9 @@ Date: December 2024
   --spacing-75: 0.75rem;
   --spacing-100: 1rem;
   --spacing-125: 1.25rem;
+  --spacing-135: 1.375rem;
   --spacing-150: 1.5rem;
+  --spacing-200: 2rem;
 }
 
 /* Box sizing rules */
@@ -167,6 +169,7 @@ header {
   font-size: var(--fs-400);
   font-size: clamp(1rem, 0.8239rem + 0.75117vw, 1.5rem);
   text-align: center;
+  color: var(--clr-blue-gray);
 }
 
 /* Components */
@@ -382,11 +385,7 @@ input[type='range']::-moz-range-progress {
   border: none;
 }
 
-@media (min-width: 40rem) {
-  .char-options-container {
-    gap: var(--spacing-125);
-  }
-}
+
 
 /* Checkbox and Label Styles */
 .form-control {
@@ -432,7 +431,7 @@ input[type="checkbox"]:checked::before {
 .strength-container > p {
   margin: 0;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--clr-blue-gray);
 }
 
@@ -481,4 +480,20 @@ input[type="checkbox"]:checked::before {
 .strong {
   background: var(--clr-neon-green);
   border-color: var(--clr-neon-green);
+}
+
+@media (min-width: 40rem) {
+  .title {
+    margin-bottom: var(--spacing-150);
+  }
+  .password-output {
+    padding-block: var(--spacing-135);
+    padding-inline: var(--spacing-200);
+  }
+  .password-form {
+    padding: var(--spacing-200);
+  }
+  .char-options-container {
+    gap: var(--spacing-125);
+  }
 }

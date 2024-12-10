@@ -72,6 +72,7 @@ function evaluatePasswordStrength(password, options) {
   // debug
   console.log('Score: ', score)
 
+  // renderPassword(password);
   renderStrengthOutput(score)
 
 }
@@ -94,12 +95,9 @@ function renderStrengthOutput(ratingScore) {
   */
   resetStrengthOutput(); // clear any previous styles/content
   
-  const legend = {
-    ratingLabel: '',
-    barCount: null,
-    barColor: ''
-  }
-
+  // Initialize an object to serve as a styles legend
+  const legend = {};
+  // use a switch statement to populate legend based on pw stength score
   switch (ratingScore) {
     case 0:
     case 1:
@@ -125,9 +123,8 @@ function renderStrengthOutput(ratingScore) {
   }
 
   console.log(legend);
-
+  // create a proper array from the stengthBars node list
   const styledBars = Array.from(strengthBars).slice(0, legend.barCount);
-
   strengthRating.textContent = legend.ratingLabel; // apply strength rating label
   styledBars.forEach(bar => { // style corresponding strength bars
     bar.style.backgroundColor = legend.barColor;
@@ -166,21 +163,16 @@ function handleFormSubmit(event) {
     alert('select at least one option')
     return;
   }
-
+  // debug
   console.log('selected length: ', length)
   console.log(options);
 
   // generate password
   const password = generatePassword(length, options);
-  console.log(password)
-
-  // Rate password strength
-  console.log(evaluatePasswordStrength(password, options))
-
-
-  // render password
-  // add 'strength' rating to render function?
-  renderPassword(password);
+  console.log(password) // debug
+  // console.log(evaluatePasswordStrength(password, options))
+  evaluatePasswordStrength(password, options);
+  renderPassword(password); // moved to evaluatePasswordStrength
 
 
 }
