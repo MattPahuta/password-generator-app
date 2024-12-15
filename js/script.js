@@ -177,6 +177,24 @@ function handleFormSubmit(event) {
 
 }
 
+// copy to clipboard when output button clicked
+output.addEventListener("click", () => {
+  const password = output.textContent;
+  if (password) {
+    navigator.clipboard.writeText(password).then(() => {
+      copyMessage.textContent = "Password copied to clipboard!";
+      copyMessage.style.visibility = "visible";
+
+      // Hide the message after 2 seconds
+      setTimeout(() => {
+        copyMessage.style.visibility = "hidden";
+      }, 2000);
+    }).catch(() => {
+      copyMessage.textContent = "Failed to copy password.";
+      copyMessage.style.visibility = "visible";
+    });
+  }
+});
 
 
 // Initialize event listeners
