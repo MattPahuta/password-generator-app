@@ -22,10 +22,10 @@ Date: December 2024
   /* Fonts */
   --ff-primary: 'JetBrains Mono', serif;
   /* Font Sizes */
-  --fs-400: 1rem;
-  --fs-450: 1.125rem;
-  --fs-500: 1.5rem;
-  --fs700: 2rem;
+  --fs-400: 1rem; /* 16px */
+  --fs-450: 1.125rem; /* 18px */
+  --fs-500: 1.5rem; /* 24px */
+  --fs700: 2rem; /* 32px */
   /* Colors */
   --clr--very-dark-gray: hsl(248, 15%, 11%);
   --clr-dark-gray: hsl(248, 10%, 15%);
@@ -236,11 +236,26 @@ header {
   background: var(--clr-dark-gray);
 }
 
+/* Generated PW Output and Copy PW Styles */
 .output {
   font-size: var(--fs-500);
   opacity: 0.25;
 }
 
+.copy-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.copy-message {
+  margin: 0;
+  color: var(--clr-neon-green);
+  font-size: var(--fs-450);
+  text-transform: uppercase;
+}
+
+/* Password Options Form Styles */
 .password-form {
   display: grid;
   gap: var(--spacing-150);

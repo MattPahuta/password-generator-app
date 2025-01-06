@@ -5,7 +5,9 @@ const CHAR_SETS = {
   numbers: "0123456789",
   symbols: "!\"#$%& '()*+,-./:;<=>?@[\]^_`{|}~"
 };
-
+// Global variables
+const passwordOutput = document.getElementById("passwordOutput");
+const copyBtn = document.getElementById('copyBtn');
 const strengthBars = document.querySelectorAll('.bar');
 const strengthRating = document.getElementById('strengthRating');
 
@@ -53,10 +55,14 @@ function generatePassword(length, options) {
 
 // Display generated password
 function renderPassword(password) {
-  const passwordOutput = document.getElementById("passwordOutput");
+
   // console.log('PW passed in:', password)
   passwordOutput.textContent = password
   passwordOutput.style.opacity = 1;
+
+  // ToDo: set passwordOutput 'data-copy' to 'ready'
+  passwordOutput.dataset.copy = "ready";
+  console.log(passwordOutput.dataset.copy) // debug
 }
 
 // Evaluate password strength
@@ -174,27 +180,41 @@ function handleFormSubmit(event) {
   evaluatePasswordStrength(password, options);
   renderPassword(password); // moved to evaluatePasswordStrength
 
-
+  // ToDo: set passwordOutput data-copy to 'idle'
 }
 
 // copy to clipboard when output button clicked
-output.addEventListener("click", () => {
-  const password = output.textContent;
-  if (password) {
-    navigator.clipboard.writeText(password).then(() => {
-      copyMessage.textContent = "Password copied to clipboard!";
-      copyMessage.style.visibility = "visible";
+// output.addEventListener("click", () => {
+//   const password = output.textContent;
+//   if (password) {
+//     navigator.clipboard.writeText(password).then(() => {
+//       copyMessage.textContent = "Password copied to clipboard!";
+//       copyMessage.style.visibility = "visible";
 
-      // Hide the message after 2 seconds
-      setTimeout(() => {
-        copyMessage.style.visibility = "hidden";
-      }, 2000);
-    }).catch(() => {
-      copyMessage.textContent = "Failed to copy password.";
-      copyMessage.style.visibility = "visible";
-    });
+//       // Hide the message after 2 seconds
+//       setTimeout(() => {
+//         copyMessage.style.visibility = "hidden";
+//       }, 2000);
+//     }).catch(() => {
+//       copyMessage.textContent = "Failed to copy password.";
+//       copyMessage.style.visibility = "visible";
+//     });
+//   }
+// });
+
+// Copy PW to clipboard
+async function handlePasswordCopy() {
+  const password = passwordOutput.textContent;
+  const copyMessage = document.getElementById("copyMessage");
+
+  if (passwordOutput.dataset.copy === "ready") {
+    console.log('Copying password!')
+    copyMessage.textContent = "copied";
   }
-});
+
+}
+
+copyBtn.addEventListener('click', handlePasswordCopy);
 
 
 // Initialize event listeners
