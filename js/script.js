@@ -210,7 +210,22 @@ async function handlePasswordCopy() {
   if (passwordOutput.dataset.copy === "ready") {
     console.log('Copying password!')
     copyMessage.textContent = "copied";
+
+    // Initial copy pw notification
+    // Fade out text after 1 second
+    setTimeout(() => {
+      copyMessage.style.transition = 'all 1s';
+      copyMessage.style.opacity = 0;
+      // Remove styles and text after fade out
+      setTimeout(() => {
+        copyMessage.style.removeProperty('opacity');
+        copyMessage.style.removeProperty('transition');
+        copyMessage.textContent = '';
+      }, 1000);
+    }, 1000);
+
   }
+
 
 }
 
