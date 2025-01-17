@@ -17,498 +17,480 @@ Date: December 2024
   button text - ?
 */
 
-/* Custom Variables */
-:root {
-  /* Fonts */
-  --ff-primary: 'JetBrains Mono', serif;
-  /* Font Sizes */
-  --fs-400: 1rem; /* 16px */
-  --fs-450: 1.125rem; /* 18px */
-  --fs-500: 1.5rem; /* 24px */
-  --fs700: 2rem; /* 32px */
-  /* Colors */
-  --clr--very-dark-gray: hsl(248, 15%, 11%);
-  --clr-dark-gray: hsl(248, 10%, 15%);
-  --clr-blue-gray: hsl(251, 9%, 53%);
-  --clr-almost-white: hsl(252, 11%, 91%);
-  --clr-neon-green: hsl(127, 100%, 82%);
-  --clr-red: hsl(0, 91%, 63%);
-  --clr-orange: hsl(13, 95%, 66%);
-  --clr-yellow: hsl(42, 91%, 68%);
-  /* spacing */
-  --spacing-50: 0.5rem;
-  --spacing-75: 0.75rem;
-  --spacing-100: 1rem;
-  --spacing-125: 1.25rem;
-  --spacing-135: 1.375rem;
-  --spacing-150: 1.5rem;
-  --spacing-200: 2rem;
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+  }
+
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  figure,
+  blockquote,
+  dl,
+  dd {
+    margin: 0;
+  }
+
+  [role='list'] {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    min-block-size: 100vh;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  button,
+  input,
+  label {
+    line-height: 1.1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  img,
+  picture {
+    max-inline-size: 100%;
+    display: block;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
 }
 
-/* Box sizing rules */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+@layer base {
+  /* Custom Variables */
+  :root {
+    /* Fonts */
+    --ff-primary: 'JetBrains Mono', serif;
+    /* Font Sizes */
+    --fs-400: 1rem; /* 16px */
+    --fs-450: 1.125rem; /* 18px */
+    --fs-500: 1.5rem; /* 24px */
+    --fs700: 2rem; /* 32px */
+    /* Colors */
+    --clr--very-dark-gray: hsl(248, 15%, 11%);
+    --clr-dark-gray: hsl(248, 10%, 15%);
+    --clr-blue-gray: hsl(251, 9%, 53%);
+    --clr-almost-white: hsl(252, 11%, 91%);
+    --clr-neon-green: hsl(127, 100%, 82%);
+    --clr-red: hsl(0, 91%, 63%);
+    --clr-orange: hsl(13, 95%, 66%);
+    --clr-yellow: hsl(42, 91%, 68%);
+    /* spacing */
+    --spacing-50: 0.5rem;
+    --spacing-75: 0.75rem;
+    --spacing-100: 1rem;
+    --spacing-125: 1.25rem;
+    --spacing-135: 1.375rem;
+    --spacing-150: 1.5rem;
+    --spacing-200: 2rem;
+  }
+
+  html {
+    font-family: var(--ff-primary);
+  }
+
+  body {
+    margin: 0;
+    font-size: var(--fs-400);
+    background: var(--clr--very-dark-gray);
+    color: var(--clr-almost-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main-title {
+    margin: 0;
+    margin-bottom: var(--spacing-100);
+    font-size: var(--fs-400);
+    font-size: clamp(1rem, 0.8239rem + 0.75117vw, 1.5rem);
+    text-align: center;
+    color: var(--clr-blue-gray);
+  }
 }
 
-/* Prevent font size inflation */
-html {
-  -moz-text-size-adjust: none;
-  -webkit-text-size-adjust: none;
-  text-size-adjust: none;
-}
-
-/* Remove default margin in favour of better control in authored CSS */
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-figure,
-blockquote,
-dl,
-dd {
-  margin-block-end: 0;
-}
-
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
-ol[role='list'] {
-  list-style: none;
-}
-
-/* Set core body defaults */
-body {
-  min-height: 100vh;
-  line-height: 1.5;
-}
-
-/* Set shorter line heights on headings and interactive elements */
-h1,
-h2,
-h3,
-h4,
-button,
-input,
-label {
-  line-height: 1.1;
-}
-
-/* Balance text wrapping on headings */
-h1,
-h2,
-h3,
-h4 {
-  text-wrap: balance;
-}
-
-/* A elements that don't have a class get default styles */
-a:not([class]) {
-  text-decoration-skip-ink: auto;
-  color: currentColor;
-}
-
-/* Make images easier to work with */
-img,
-picture {
-  max-width: 100%;
-  display: block;
-}
-
-/* Inherit fonts for inputs and buttons */
-input,
-button,
-textarea,
-select {
-  font-family: inherit;
-  font-size: inherit;
-}
-
-/* Make sure textareas without a rows attribute are not tiny */
-textarea:not([rows]) {
-  min-height: 10em;
-}
-
-/* Anything that has been anchored to should have extra scroll margin */
-:target {
-  scroll-margin-block: 5ex;
-}
-
-.visually-hidden:not(:focus):not(:active) {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
-
-/* Base Styles */
-body {
-  margin: 0;
-  font-family: var(--ff-primary);
-  font-size: var(--fs-400);
-  background: var(--clr--very-dark-gray);
-  color: var(--clr-almost-white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-header {
-  text-align: center;
-  padding-block: var(--spacing-100);
-}
-
-.title {
-  margin: 0;
-  margin-bottom: var(--spacing-100);
-  font-size: var(--fs-400);
-  font-size: clamp(1rem, 0.8239rem + 0.75117vw, 1.5rem);
-  text-align: center;
-  color: var(--clr-blue-gray);
-}
-
-/* Components */
-.btn {
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: 220ms all ease-in-out;
-}
-
-@media screen and (-ms-high-contrast: active) {
+@layer components {
   .btn {
-    border: 2px solid currentcolor;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: 220ms all ease-in-out;
+  }
+
+  @media screen and (-ms-high-contrast: active) {
+    .btn {
+      border: 2px solid currentcolor;
+    }
+  }
+  .copy-btn {
+  }
+
+  .copy-btn:hover svg path,
+  .copy-btn:focus svg path {
+    fill: var(--clr-almost-white);
+  }
+
+  .generate-btn {
+    min-width: 10ch;
+    min-height: 44px;
+    width: 100%;
+    background: var(--clr-neon-green);
+    text-transform: uppercase;
+    font-weight: 700;
+    gap: var(--spacing-100);
+  }
+
+  .generate-btn:hover,
+  .generate-btn:focus-within {
+    background: transparent;
+    color: var(--clr-neon-green);
+    border: 2px solid var(--clr-neon-green);
+  }
+
+  .generate-btn:hover svg path,
+  .generate-btn:focus svg path {
+    fill: var(--clr-neon-green);
   }
 }
-.copy-btn {
-}
 
-.copy-btn:hover svg path,
-.copy-btn:focus svg path {
-  fill: var(--clr-almost-white);
-}
-
-.generate-btn {
-  min-width: 10ch;
-  min-height: 44px;
-  width: 100%;
-  background: var(--clr-neon-green);
-  text-transform: uppercase;
-  font-weight: 700;
-  gap: var(--spacing-100);
-}
-
-.generate-btn:hover,
-.generate-btn:focus-within {
-  background: transparent;
-  color: var(--clr-neon-green);
-  border: 2px solid var(--clr-neon-green);
-}
-
-.generate-btn:hover svg path,
-.generate-btn:focus svg path {
-  fill: var(--clr-neon-green);
-}
-
-/* App styles */
-.app {
-  padding-inline: var(--spacing-100);
-  width: 100%;
-}
-
-.app main {
-  max-width: 33.75rem;
-  margin-inline: auto;
-}
-
-.password-output,
-.password-form {
-  padding: var(--spacing-100);
-  background: var(--clr-dark-gray);
-}
-
-/* Generated PW Output and Copy PW Styles */
-.output {
-  font-size: var(--fs-500);
-  opacity: 0.25;
-}
-
-.copy-container {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.copy-message {
-  margin: 0;
-  color: var(--clr-neon-green);
-  font-size: var(--fs-450);
-  text-transform: uppercase;
-}
-
-/* Password Options Form Styles */
-.password-form {
-  display: grid;
-  gap: var(--spacing-150);
-}
-
-.password-output {
-  margin-bottom: var(--spacing-100);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.length-slider-container {
-  display: grid;
-  grid-template-columns: 1fr min-content;
-  gap: var(--spacing-100);
-  line-height: 1;
-}
-
-.length-range-output {
-  font-weight: 600;
-  color: var(--clr-neon-green);
-}
-
-.length-range-input {
-  grid-column: span 2;
-}
-
-/* === range theme and appearance === */
-input[type='range'] {
-  --thumb-height: 1.125em;
-  --track-height: 0.125em;
-  --clip-edges: 0.125em;
-  --track-color: var(--clr--very-dark-gray);
-  font-size: 1.5em;
-  width: 100%;
-  background: var(--clr-dark-gray);
-  color: var(--clr-neon-green);
-  overflow: hidden;
-}
-
-/* === WebKit specific styles === */
-input[type='range'],
-input[type='range']::-webkit-slider-runnable-track,
-input[type='range']::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  transition: 200ms all ease-in-out;
-  height: var(--thumb-height);
-}
-
-input[type='range']::-webkit-slider-thumb {
-  --thumb-radius: calc((var(--thumb-height) * 0.5) - 1px);
-  --clip-top: calc(
-    (var(--thumb-height) - var(--track-height)) * 0.5 - 0.5px
-  );
-  --clip-bottom: calc(var(--thumb-height) - var(--clip-top));
-  --clip-further: calc(100% + 1px);
-  --box-fill: calc(-100vmax - var(--thumb-width, var(--thumb-height)))
-    0 0 100vmax currentColor;
-  width: var(--thumb-width, var(--thumb-height));
-  background-color: currentColor;
-  box-shadow: var(--box-fill);
-  border-radius: var(--thumb-width, var(--thumb-height));
-  clip-path: polygon(
-    100% -1px,
-    var(--clip-edges) -1px,
-    0 var(--clip-top),
-    -100vmax var(--clip-top),
-    -100vmax var(--clip-bottom),
-    0 var(--clip-bottom),
-    var(--clip-edges) 100%,
-    var(--clip-further) var(--clip-further)
-  );
-}
-
-input[type='range']:hover::-webkit-slider-thumb,
-input[type='range']:focus::-webkit-slider-thumb {
-  background-color: var(--clr--very-dark-gray);
-  border: 2px solid var(--clr-neon-green);
-  cursor: pointer;
-}
-
-input[type='range']::-webkit-slider-runnable-track {
-  background: linear-gradient(var(--track-color) 0 0) scroll no-repeat
-    center / 100% calc(var(--track-height) + 1px);
-}
-
-/* === Firefox specific styles === */
-input[type='range'],
-input[type='range']::-moz-range-track,
-input[type='range']::-moz-range-thumb {
-  box-sizing: border-box;
-  appearance: none;
-  transition: all ease 100ms;
-  height: var(--thumb-height);
-}
-
-input[type='range']::-moz-range-track,
-input[type='range']::-moz-range-thumb,
-input[type='range']::-moz-range-progress {
-  background: var(--clr-neon-green);
-}
-
-input[type='range']::-moz-range-thumb {
-  background: currentColor;
-  border: 0;
-  width: var(--thumb-width, var(--thumb-height));
-  border-radius: var(--thumb-width, var(--thumb-height));
-}
-
-input[type='range']:hover::-moz-range-thumb,
-input[type='range']:focus::-moz-range-thumb {
-  background-color: var(--clr--very-dark-gray);
-  border: 2px solid var(--clr-neon-green);
-  cursor: pointer;
-}
-
-input[type='range']::-moz-range-track {
-  width: 100%;
-  background: var(--track-color);
-}
-
-input[type='range']::-moz-range-progress {
-  appearance: none;
-  background: currentColor;
-  transition-delay: 30ms;
-}
-
-input[type='range']::-moz-range-track,
-input[type='range']::-moz-range-progress {
-  height: calc(var(--track-height) + 1px);
-  border-radius: var(--track-height);
-}
-
-/* Character options checklist */
-.char-options-container {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-100);
-  border: none;
-}
-
-
-
-/* Checkbox and Label Styles */
-.form-control {
-  font-weight: 700;
-  display: grid;
-  grid-template-columns: 1em auto;
-  gap: var(--spacing-125);
-  color: var(--clr-almost-white);
-}
-
-input[type="checkbox"] {
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: var(--clr-dark-gray);
-  margin: 0;
-  color: currentColor;
-  width: 1.25rem;
-  height: 1.25rem;
-  border: 2px solid var(--clr-almost-white);
-  transform: translateY(-0.075em);
-  display: grid;
-  place-content: center;
-  cursor: pointer;
-  transition: 150ms all ease-in-out;
-}
-
-input[type="checkbox"]:checked {
-  border-color: var(--clr-neon-green);
-  background: var(--clr-neon-green);
-}
-input[type="checkbox"]:checked::before {
-  content: url(../images/icon-check.svg);
-}
-
-/* PW Strength Indicator */
-.strength-container {
-  padding: var(--spacing-100);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--clr--very-dark-gray);
-}
-.strength-container > p {
-  margin: 0;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: var(--clr-blue-gray);
-}
-
-.strength-rating-container {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-75);
-}
-
-.strength-label {
-  margin: 0;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.strength-bars {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-50);
-}
-
-.bar {
-  width: 0.625rem;
-  height: 1.75rem;
-  background: none;
-  border: 2px solid var(--clr-almost-white);
-}
-
-.too-weak {
-  background: var(--clr-red);
-  border-color: var(--clr-red);
-}
-
-.weak {
-  background: var(--clr-orange);
-  border-color: var(--clr-orange);
-  
-}
-
-.medium {
-  background: var(--clr-yellow);
-  border-color: var(--clr-yellow);
-  
-}
-
-.strong {
-  background: var(--clr-neon-green);
-  border-color: var(--clr-neon-green);
-}
-
-@media (min-width: 40rem) {
-  .title {
-    margin-bottom: var(--spacing-150);
+@layer layout {
+  .app {
+    padding-inline: var(--spacing-100);
+    width: 100%;
   }
-  .password-output {
-    padding-block: var(--spacing-135);
-    padding-inline: var(--spacing-200);
+
+  .main {
+    max-width: 33.75rem;
+    margin-inline: auto;
   }
+
+  .password-output,
   .password-form {
-    padding: var(--spacing-200);
+    padding: var(--spacing-100);
+    background: var(--clr-dark-gray);
   }
+
+  /* Generated PW Output and Copy PW Styles */
+  .output {
+    font-size: var(--fs-500);
+    opacity: 0.25;
+  }
+
+  .copy-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .copy-message {
+    margin: 0;
+    color: var(--clr-neon-green);
+    font-size: var(--fs-450);
+    text-transform: uppercase;
+  }
+
+  /* Password Options Form Styles */
+  .password-form {
+    display: grid;
+    gap: var(--spacing-150);
+  }
+
+  .password-output {
+    margin-bottom: var(--spacing-100);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .length-slider-container {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    gap: var(--spacing-100);
+    line-height: 1;
+  }
+
+  .length-range-output {
+    font-weight: 600;
+    color: var(--clr-neon-green);
+  }
+
+  .length-range-input {
+    grid-column: span 2;
+  }
+
+  /* === range theme and appearance === */
+  input[type='range'] {
+    --thumb-height: 1.125em;
+    --track-height: 0.125em;
+    --clip-edges: 0.125em;
+    --track-color: var(--clr--very-dark-gray);
+    font-size: 1.5em;
+    width: 100%;
+    background: var(--clr-dark-gray);
+    color: var(--clr-neon-green);
+    overflow: hidden;
+  }
+
+  /* === WebKit specific styles === */
+  input[type='range'],
+  input[type='range']::-webkit-slider-runnable-track,
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    transition: 200ms all ease-in-out;
+    height: var(--thumb-height);
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    --thumb-radius: calc((var(--thumb-height) * 0.5) - 1px);
+    --clip-top: calc(
+      (var(--thumb-height) - var(--track-height)) * 0.5 - 0.5px
+    );
+    --clip-bottom: calc(var(--thumb-height) - var(--clip-top));
+    --clip-further: calc(100% + 1px);
+    --box-fill: calc(
+        -100vmax - var(--thumb-width, var(--thumb-height))
+      )
+      0 0 100vmax currentColor;
+    width: var(--thumb-width, var(--thumb-height));
+    background-color: currentColor;
+    box-shadow: var(--box-fill);
+    border-radius: var(--thumb-width, var(--thumb-height));
+    clip-path: polygon(
+      100% -1px,
+      var(--clip-edges) -1px,
+      0 var(--clip-top),
+      -100vmax var(--clip-top),
+      -100vmax var(--clip-bottom),
+      0 var(--clip-bottom),
+      var(--clip-edges) 100%,
+      var(--clip-further) var(--clip-further)
+    );
+  }
+
+  input[type='range']:hover::-webkit-slider-thumb,
+  input[type='range']:focus::-webkit-slider-thumb {
+    background-color: var(--clr--very-dark-gray);
+    border: 2px solid var(--clr-neon-green);
+    cursor: pointer;
+  }
+
+  input[type='range']::-webkit-slider-runnable-track {
+    background: linear-gradient(var(--track-color) 0 0) scroll
+      no-repeat center / 100% calc(var(--track-height) + 1px);
+  }
+
+  /* === Firefox specific styles === */
+  input[type='range'],
+  input[type='range']::-moz-range-track,
+  input[type='range']::-moz-range-thumb {
+    box-sizing: border-box;
+    appearance: none;
+    transition: all ease 100ms;
+    height: var(--thumb-height);
+  }
+
+  input[type='range']::-moz-range-track,
+  input[type='range']::-moz-range-thumb,
+  input[type='range']::-moz-range-progress {
+    background: var(--clr-neon-green);
+  }
+
+  input[type='range']::-moz-range-thumb {
+    background: currentColor;
+    border: 0;
+    width: var(--thumb-width, var(--thumb-height));
+    border-radius: var(--thumb-width, var(--thumb-height));
+  }
+
+  input[type='range']:hover::-moz-range-thumb,
+  input[type='range']:focus::-moz-range-thumb {
+    background-color: var(--clr--very-dark-gray);
+    border: 2px solid var(--clr-neon-green);
+    cursor: pointer;
+  }
+
+  input[type='range']::-moz-range-track {
+    width: 100%;
+    background: var(--track-color);
+  }
+
+  input[type='range']::-moz-range-progress {
+    appearance: none;
+    background: currentColor;
+    transition-delay: 30ms;
+  }
+
+  input[type='range']::-moz-range-track,
+  input[type='range']::-moz-range-progress {
+    height: calc(var(--track-height) + 1px);
+    border-radius: var(--track-height);
+  }
+
+  /* Character options checklist */
   .char-options-container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-100);
+    border: none;
+  }
+
+  /* Checkbox and Label Styles */
+  .form-control {
+    font-weight: 700;
+    display: grid;
+    grid-template-columns: 1em auto;
     gap: var(--spacing-125);
+    color: var(--clr-almost-white);
+  }
+
+  input[type='checkbox'] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: var(--clr-dark-gray);
+    margin: 0;
+    color: currentColor;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid var(--clr-almost-white);
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    transition: 150ms all ease-in-out;
+  }
+
+  input[type='checkbox']:checked {
+    border-color: var(--clr-neon-green);
+    background: var(--clr-neon-green);
+  }
+  input[type='checkbox']:checked::before {
+    content: url(../images/icon-check.svg);
+  }
+
+  /* PW Strength Indicator */
+  .strength-container {
+    padding: var(--spacing-100);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--clr--very-dark-gray);
+  }
+  .strength-container > p {
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--clr-blue-gray);
+  }
+
+  .strength-rating-container {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-75);
+  }
+
+  .strength-label {
+    margin: 0;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .strength-bars {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-50);
+  }
+
+  .bar {
+    width: 0.625rem;
+    height: 1.75rem;
+    background: none;
+    border: 2px solid var(--clr-almost-white);
+  }
+
+  .too-weak {
+    background: var(--clr-red);
+    border-color: var(--clr-red);
+  }
+
+  .weak {
+    background: var(--clr-orange);
+    border-color: var(--clr-orange);
+  }
+
+  .medium {
+    background: var(--clr-yellow);
+    border-color: var(--clr-yellow);
+  }
+
+  .strong {
+    background: var(--clr-neon-green);
+    border-color: var(--clr-neon-green);
+  }
+
+  @media (min-width: 40rem) {
+    .title {
+      margin-bottom: var(--spacing-150);
+    }
+    .password-output {
+      padding-block: var(--spacing-135);
+      padding-inline: var(--spacing-200);
+    }
+    .password-form {
+      padding: var(--spacing-200);
+    }
+    .char-options-container {
+      gap: var(--spacing-125);
+    }
+  }
+}
+
+@layer utilities {
+  .visually-hidden:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
   }
 }
