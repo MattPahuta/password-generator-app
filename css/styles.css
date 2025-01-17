@@ -159,11 +159,9 @@ Date: December 2024
       border: 2px solid currentcolor;
     }
   }
-  .copy-btn {
-  }
 
   .copy-btn:hover svg path,
-  .copy-btn:focus svg path {
+  .copy-btn:focus-visible svg path {
     fill: var(--clr-almost-white);
   }
 
@@ -178,16 +176,31 @@ Date: December 2024
   }
 
   .generate-btn:hover,
-  .generate-btn:focus-within {
+  .generate-btn:focus-visible {
     background: transparent;
     color: var(--clr-neon-green);
     border: 2px solid var(--clr-neon-green);
   }
 
   .generate-btn:hover svg path,
-  .generate-btn:focus svg path {
+  .generate-btn:focus-visible svg path {
     fill: var(--clr-neon-green);
   }
+
+  .alert-close-btn {
+    margin-bottom: var(--spacing-75);
+    padding: 0.25rem;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--clr-orange);
+  }
+
+  .alert-close-btn:hover,
+  .alert-close-btn:focus-visible {
+    color: var(--clr-almost-white); 
+  }
+
 }
 
 @layer layout {
@@ -224,6 +237,28 @@ Date: December 2024
     color: var(--clr-neon-green);
     font-size: var(--fs-450);
     text-transform: uppercase;
+  }
+
+  /* alert dialog box */
+  .alert-dialog {
+    padding: 1rem;
+    background: var(--clr--very-dark-gray);
+    color: var(--clr-orange);
+  }
+
+  .alert-dialog::backdrop {
+    opacity: 0.7;
+    background-color: var(--clr--very-dark-gray);
+  }
+
+  .alert-header {
+    display: flex;
+    justify-content: end;
+  }
+
+  .alert-dialog p {
+    margin-bottom: var(--spacing-50);
+    font-size: var(--fs-450);
   }
 
   /* Password Options Form Styles */

@@ -11,6 +11,9 @@ const copyBtn = document.getElementById('copyBtn');
 const strengthBars = document.querySelectorAll('.bar');
 const strengthRating = document.getElementById('strengthRating');
 
+const alertDialog = document.getElementById('alert');
+const alertCloseBtn = document.getElementById('alert-close-btn');
+
 // symbols list from OWASP (https://owasp.org/www-community/password-special-characters)
 
 // Get character length value from input range slider
@@ -47,20 +50,14 @@ function generatePassword(length, options) {
     const randomIndex = Math.floor(Math.random() * allChars.length);
     password += allChars[randomIndex];
   }
-
   console.log('AllChars: ', allChars)
-
   return password;
 }
 
 // Display generated password
 function renderPassword(password) {
-
-  // console.log('PW passed in:', password)
   passwordOutput.textContent = password
   passwordOutput.style.opacity = 1;
-
-  // ToDo: set passwordOutput 'data-copy' to 'ready'
   passwordOutput.dataset.copy = "ready";
   console.log(passwordOutput.dataset.copy) // debug
 }
@@ -68,7 +65,6 @@ function renderPassword(password) {
 // Evaluate password strength
 function evaluatePasswordStrength(password, options) {
   let score = 0;
-  // Scoring based on length and character types
   if (password.length >= 8) score += 1;
   if (password.length >= 12) score += 1;
   if (options.uppercase && /[A-Z]/.test(password)) score += 1; // Uppercase check
@@ -77,10 +73,7 @@ function evaluatePasswordStrength(password, options) {
   if (options.symbols && /[!#$%& '()*+,-./:;<=>?@[\]^_`{|}~]/.test(password)) score += 1; // Symbol check
   // debug
   console.log('Score: ', score)
-
-  // renderPassword(password);
   renderStrengthOutput(score)
-
 }
 
 // Render password strength label and indicator
@@ -128,7 +121,7 @@ function renderStrengthOutput(ratingScore) {
       legend.barColor = 'hsl(127, 100%, 82%)';
   }
 
-  console.log(legend);
+  console.log(legend); // debug
   // create a proper array from the stengthBars node list
   const styledBars = Array.from(strengthBars).slice(0, legend.barCount);
   strengthRating.textContent = legend.ratingLabel; // apply strength rating label
@@ -166,13 +159,15 @@ function handleFormSubmit(event) {
 
   // if all options are false (none selected), exit function
   if (!options.uppercase && !options.lowercase && !options.numbers && !options.symbols) {
-    alert('select at least one option')
+    // alert('select at least one option')
+    alertDialog.showModal();
+    passwordOutput.dataset.copy === "idle"
+    console.log('updating pw output data attribute...')
     return;
   }
   // debug
   console.log('selected length: ', length)
   console.log(options);
-
   // generate password
   const password = generatePassword(length, options);
   console.log(password) // debug
@@ -183,25 +178,6 @@ function handleFormSubmit(event) {
   // ToDo: set passwordOutput data-copy to 'idle'
 }
 
-// copy to clipboard when output button clicked
-// output.addEventListener("click", () => {
-//   const password = output.textContent;
-//   if (password) {
-//     navigator.clipboard.writeText(password).then(() => {
-//       copyMessage.textContent = "Password copied to clipboard!";
-//       copyMessage.style.visibility = "visible";
-
-//       // Hide the message after 2 seconds
-//       setTimeout(() => {
-//         copyMessage.style.visibility = "hidden";
-//       }, 2000);
-//     }).catch(() => {
-//       copyMessage.textContent = "Failed to copy password.";
-//       copyMessage.style.visibility = "visible";
-//     });
-//   }
-// });
-
 // Copy PW to clipboard
 async function handlePasswordCopy() {
   const password = passwordOutput.textContent;
@@ -210,7 +186,7 @@ async function handlePasswordCopy() {
   if (passwordOutput.dataset.copy === "ready") {
     console.log('Copying password!')
     copyMessage.textContent = "copied";
-
+    await navigator.clipboard.writeText(password); // copy pw to clipboard
     // Initial copy pw notification
     // Fade out text after 1 second
     setTimeout(() => {
@@ -223,14 +199,14 @@ async function handlePasswordCopy() {
         copyMessage.textContent = '';
       }, 1000);
     }, 1000);
-
   }
-
 
 }
 
 copyBtn.addEventListener('click', handlePasswordCopy);
-
+alertCloseBtn.addEventListener('click', () => {
+  alertDialog.close();
+});
 
 // Initialize event listeners
 document.addEventListener("DOMContentLoaded", () => {
