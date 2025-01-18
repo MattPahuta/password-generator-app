@@ -10,7 +10,7 @@
       type="image/png"
       sizes="32x32"
       href="./images/favicon-32x32.png" />
-    <title>Frontend Mentor | Password generator app</title>
+    <title>Password generator app</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       rel="preconnect"
@@ -25,9 +25,7 @@
     <div class="app">
       <main class="main">
         <h1 class="main-title">Password Generator</h1>
-        <!-- generated pw output container -->
         <div class="password-output">
-          <!-- ToDo: use data attribute to signify output as ready to copy? -->
           <output
             id="passwordOutput"
             class="output"
@@ -53,19 +51,19 @@
         </div>
         <dialog id="alert" class="alert-dialog">
           <header class="alert-header">
-            <button id="alert-close-btn" class="btn alert-close-btn" autofocus>
+            <button
+              id="alert-close-btn"
+              class="btn alert-close-btn"
+              autofocus>
               <span>&times;</span>
               <span class="visually-hidden">Close alert dialog</span>
             </button>
           </header>
           <p>Select at least one password complexity option.</p>
         </dialog>
-
         <form id="passwordForm" class="password-form">
-          <!-- range slider -->
           <div class="length-slider-container">
             <label for="lengthInput">Character Length</label>
-            <!-- ToDo: check use of output el and 'for' attribute -->
             <output
               id="lengthOutput"
               aria-live="polite"
@@ -83,11 +81,9 @@
               value="10"
               step="1" />
           </div>
-          <!-- pw composition checkboxes -->
           <fieldset
             id="charOptionsContainer"
             class="char-options-container">
-            <!-- visually hidden legend -->
             <legend class="visually-hidden">
               Select password composition options
             </legend>
@@ -120,8 +116,6 @@
               Include Symbols
             </label>
           </fieldset>
-
-          <!-- pw strength indicator -->
           <div class="strength-container">
             <p>Strength</p>
             <div class="strength-rating-container">
@@ -139,7 +133,6 @@
               </div>
             </div>
           </div>
-
           <button
             id="generateBtn"
             class="btn generate-btn"

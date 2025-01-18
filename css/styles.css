@@ -1,20 +1,7 @@
 /*
 Author: Matt Pahuta
 https://www.mattpahuta.com
-Date: December 2024
-*/
-
-/* 
-  **** Specs ****
-  
-  h1 - 16px to 24px 
-  output pw - ?
-  character length label - ?
-  character length number - ?
-  checkbox squares - 20px x 20px
-  checkbox labels - ?
-  strength - 16px to ?
-  button text - ?
+Date: January 2025
 */
 
 @layer reset {
@@ -90,7 +77,6 @@ Date: December 2024
 }
 
 @layer base {
-  /* Custom Variables */
   :root {
     /* Fonts */
     --ff-primary: 'JetBrains Mono', serif;
@@ -220,7 +206,6 @@ Date: December 2024
     background: var(--clr-dark-gray);
   }
 
-  /* Generated PW Output and Copy PW Styles */
   .output {
     font-size: var(--fs-500);
     opacity: 0.25;
@@ -239,7 +224,6 @@ Date: December 2024
     text-transform: uppercase;
   }
 
-  /* alert dialog box */
   .alert-dialog {
     padding: 1rem;
     background: var(--clr--very-dark-gray);
