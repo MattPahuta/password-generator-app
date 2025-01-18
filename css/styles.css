@@ -102,6 +102,7 @@ Date: January 2025
     --spacing-135: 1.375rem;
     --spacing-150: 1.5rem;
     --spacing-200: 2rem;
+    --spacing-250: 2.5rem;
   }
 
   html {
@@ -155,11 +156,13 @@ Date: January 2025
     min-width: 10ch;
     min-height: 44px;
     width: 100%;
+    padding: var(--spacing-100);
     background: var(--clr-neon-green);
     color: var(--clr--very-dark-gray);
     text-transform: uppercase;
     font-weight: 700;
     gap: var(--spacing-100);
+    border: 2px solid transparent;
   }
 
   .generate-btn:hover,
@@ -185,9 +188,14 @@ Date: January 2025
 
   .alert-close-btn:hover,
   .alert-close-btn:focus-visible {
-    color: var(--clr-almost-white); 
+    color: var(--clr-almost-white);
   }
 
+  @media (min-width: 40rem) {
+    .generate-btn {
+      padding: var(--spacing-125);
+    }
+  }
 }
 
 @layer layout {
@@ -395,6 +403,7 @@ Date: January 2025
 
   /* Checkbox and Label Styles */
   .form-control {
+    min-height: 21px;
     font-weight: 700;
     display: grid;
     grid-template-columns: 1em auto;
@@ -496,9 +505,24 @@ Date: January 2025
     }
     .password-form {
       padding: var(--spacing-200);
+      gap: var(--spacing-200);
+    }
+    .length-slider-container label {
+      font-size: var(--fs-450);
+      font-weight: 500;
+    }
+    .length-range-output {
+      font-size: var(--fs700);
     }
     .char-options-container {
       gap: var(--spacing-125);
+    }
+    .form-control {
+      min-height: 23px;
+      font-size: var(--fs-450);
+    }
+    .strength-container {
+      padding: var(--spacing-135);
     }
   }
 }
