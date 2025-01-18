@@ -156,6 +156,7 @@ Date: January 2025
     min-height: 44px;
     width: 100%;
     background: var(--clr-neon-green);
+    color: var(--clr--very-dark-gray);
     text-transform: uppercase;
     font-weight: 700;
     gap: var(--spacing-100);
