@@ -28,13 +28,14 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./images/project-ss-01.png)
+![](./images/project-ss-02.png)
 
 Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
 
 ### Links
 
-- [Frontend Mentor Solution UR](https://your-solution-url.com)
+- [Frontend Mentor Solution UR](https://www.frontendmentor.io/solutions/responsive-password-generator-using-vanilla-javascript-vwzXXgHmfg)
 - [Live Site URL](https://scintillating-muffin-250ce1.netlify.app/)
 
 ## My process
