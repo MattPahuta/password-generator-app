@@ -93,6 +93,8 @@ The most challenging aspect of this project was styling the form inputs to match
 
 On the JavaScript side, I used content from [OWASP](https://owasp.org/) to inform my decisions around valid password character sets. I decided on a straightforward JavaScript approach to constructing the password, using an object to reference the available options. I'm no expert on this subject and didn't want to over-complicate the logic involved. 
 
+Note: My initial solution for generating the password fell a little short. I was pooling the selected characters properly to construct a random password, but I overlooked adding the logic to ensure at least one of those chosen character sets was included in the final password generation. Thanks to the Frontend Mentor community, the bug was caught and I went back to revise the function with a more robust solution.
+
 ```js
 const CHAR_SETS = {
   uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
@@ -102,17 +104,38 @@ const CHAR_SETS = {
 };
 
 function generatePassword(length, options) {
-  let allChars = "";
-  let password = "";
-  if (options.uppercase) allChars += CHAR_SETS.uppercase;
-  if (options.lowercase) allChars += CHAR_SETS.lowercase;
-  if (options.numbers) allChars += CHAR_SETS.numbers;
-  if (options.symbols) allChars += CHAR_SETS.symbols;
-
-  for (let i = 0; i < length; i++) {
+  let allChars = ""; // build pool of characters from selected options
+  let password = ""; // initialize password 
+  const selectedChars = []; // initialize array to generate password from
+  // Determine which character sets to include in the password, add one character from each set to ensure inclusion
+  if (options.uppercase) {
+    allChars += CHAR_SETS.uppercase;
+    selectedChars.push(CHAR_SETS.uppercase[Math.floor(Math.random() * CHAR_SETS.uppercase.length)]);
+  } 
+  if (options.lowercase) {
+    allChars += CHAR_SETS.lowercase;
+    selectedChars.push(CHAR_SETS.lowercase[Math.floor(Math.random() * CHAR_SETS.lowercase.length)]);
+  } 
+  if (options.numbers) {
+    allChars += CHAR_SETS.numbers;
+    selectedChars.push(CHAR_SETS.numbers[Math.floor(Math.random() * CHAR_SETS.numbers.length)]);
+  } 
+  if (options.symbols) {
+    allChars += CHAR_SETS.symbols;
+    selectedChars.push(CHAR_SETS.symbols[Math.floor(Math.random() * CHAR_SETS.symbols.length)]);
+  } 
+  // Add the selected characters to the password
+  for (let char of selectedChars) {
+    password += char;
+  }
+  // Generate the rest of the password with random characters from the selected character sets
+  for (let i = password.length; i < length; i++) {
     const randomIndex = Math.floor(Math.random() * allChars.length);
     password += allChars[randomIndex];
   }
+  // Shuffle the password for enhanced randomness
+  password = password.split('').sort(() => 0.5 - Math.random()).join('');
+
   return password;
 }
 ```
